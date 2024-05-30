@@ -25,6 +25,7 @@
 </style>
 <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 <script src="Mth_K1_1A_01_01_02.js?1717073946797"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 <script>
 // Global Scripts
 	Data = null;</script>
@@ -43,6 +44,7 @@ function init() {
 	loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
 	var lib=comp.getLibrary();
 	loader.loadManifest(lib.properties.manifest);
+	
 }
 function handleFileLoad(evt, comp) {
 	var images=comp.getImages();	
@@ -74,6 +76,30 @@ function handleComplete(evt,comp) {
 	AdobeAn.compositionLoaded(lib.properties.id);
 	fnStartAnimation();
 }
+	var canvas = document.getElementById('canvas');
+        var stage = new createjs.Stage(canvas);
+        var currentScale = 1;
+        var hammer = new Hammer(canvas);
+
+        // Enable pinch gesture
+        hammer.get('pinch').set({ enable: true });
+
+        // Handle pinch events
+        hammer.on('pinch', function(ev) {
+            stage.scaleX = currentScale * ev.scale;
+            stage.scaleY = currentScale * ev.scale;
+            stage.update();
+        });
+
+        // Update current scale on pinch end
+        hammer.on('pinchend', function(ev) {
+            currentScale *= ev.scale;
+        });
+
+        // Prevent default touch behavior
+        canvas.addEventListener('touchmove', function(event) {
+            event.preventDefault();
+        }, { passive: false });
 </script>
 <!-- write your code here -->
 </head>
