@@ -30,6 +30,7 @@
 </style>
 <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 <script src="Mth_K1_1A_01_01_02.js?1717073946797"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 <script>
 // Global Scripts
 	Data = null;</script>
@@ -80,6 +81,42 @@ function handleComplete(evt,comp) {
 	fnStartAnimation();
 }
 </script>
+	<body>
+    <script src="hammer.min.js"></script>
+    <script src="your-animate-js-file.js"></script>
+    <script>
+        var canvas = document.getElementById('canvas');
+        var ctx = canvas.getContext('2d');
+        var stage = new createjs.Stage(canvas);
+        var currentScale = 1;
+        var hammer = new Hammer(canvas);
+
+        hammer.get('pinch').set({ enable: true });
+        hammer.on('pinch', function(ev) {
+            currentScale = ev.scale;
+            stage.scaleX = currentScale;
+            stage.scaleY = currentScale;
+            stage.update();
+        });
+
+        // Prevent default touch behavior
+        canvas.addEventListener('touchmove', function(event) {
+            event.preventDefault();
+        }, { passive: false });
+
+        // Initialize CreateJS content here
+        function init() {
+            // Example shape
+            var shape = new createjs.Shape();
+            shape.graphics.beginFill('red').drawCircle(0, 0, 50);
+            shape.x = canvas.width / 2;
+            shape.y = canvas.height / 2;
+            stage.addChild(shape);
+            stage.update();
+        }
+
+        init();
+    </script>
 <!-- write your code here -->
 </head>
 <body onload="init();" style="margin:0px;">
