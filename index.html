@@ -17,20 +17,14 @@
 <!-- write your code here -->
 <style>
   #animation_container, #_preload_div_ {
-/* 	position:absolute; */
-/* 	margin:auto; */
-/* 	left:0;right:0; */
-/* 	top:0;bottom:0; */
-/* 	rotate:90deg; */
+	position:absolute;
+	margin:auto;
+	left:0;right:0;
+	top:0;bottom:0;
   }
-	#canvas{
-		touch-action: pinch-zoom;
-	}
-
 </style>
 <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
 <script src="Mth_K1_1A_01_01_02.js?1717073946797"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
 <script>
 // Global Scripts
 	Data = null;</script>
@@ -76,51 +70,16 @@ function handleComplete(evt,comp) {
 		createjs.Ticker.addEventListener("tick", stage);
 	}	    
 	//Code to support hidpi screens and responsive scaling.
-	AdobeAn.makeResponsive(true,'both',true,1,[canvas,preloaderDiv,anim_container,dom_overlay_container]);	
+	//AdobeAn.makeResponsive(true,'both',true,1,[canvas,preloaderDiv,anim_container,dom_overlay_container]);	
 	AdobeAn.compositionLoaded(lib.properties.id);
 	fnStartAnimation();
 }
 </script>
-    <script src="hammer.min.js"></script>
-    <script src="your-animate-js-file.js"></script>
-    <script>
-        var canvas = document.getElementById('canvas');
-        var ctx = canvas.getContext('2d');
-        var stage = new createjs.Stage(canvas);
-        var currentScale = 1;
-        var hammer = new Hammer(canvas);
-
-        hammer.get('pinch').set({ enable: true });
-        hammer.on('pinch', function(ev) {
-            currentScale = ev.scale;
-            stage.scaleX = currentScale;
-            stage.scaleY = currentScale;
-            stage.update();
-        });
-
-        // Prevent default touch behavior
-        canvas.addEventListener('touchmove', function(event) {
-            event.preventDefault();
-        }, { passive: false });
-
-        // Initialize CreateJS content here
-        function init() {
-            // Example shape
-            var shape = new createjs.Shape();
-            shape.graphics.beginFill('red').drawCircle(0, 0, 50);
-            shape.x = canvas.width / 2;
-            shape.y = canvas.height / 2;
-            stage.addChild(shape);
-            stage.update();
-        }
-
-        init();
-    </script>
 <!-- write your code here -->
 </head>
 <body onload="init();" style="margin:0px;">
 	<div id="animation_container" style="background-color:rgba(255, 255, 255, 1.00); width:1800px; height:1200px">
-		<canvas id="canvas" width="1800" height="1200" style="background-color:rgba(255, 255, 255, 1.00);"></canvas>
+		<canvas id="canvas" width="1800" height="1200" style="position: absolute; display: none; background-color:rgba(255, 255, 255, 1.00);"></canvas>
 		<div id="dom_overlay_container" style="pointer-events:none; overflow:hidden; width:1800px; height:1200px; position: absolute; left: 0px; top: 0px; display: none;">
 		</div>
 	</div>
